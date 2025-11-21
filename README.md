@@ -85,6 +85,7 @@
       border-radius: var(--radius);
       transition: 0.25s;
       border: 1px solid #242424;
+      cursor: pointer;
     }
 
     .card:hover {
@@ -111,6 +112,53 @@
       color: var(--accent);
       text-decoration: none;
     }
+
+    /* Modal Carousel */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .modal img {
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      cursor: pointer;
+      color: var(--text);
+      user-select: none;
+    }
+
+    .left { left: -60px; }
+    .right { right: -60px; }
   </style>
 </head>
 <body>
@@ -126,42 +174,29 @@
   <section class="hero" id="about">
     <h1>Hi, I'm Owen McClain</h1>
     <p>
-      I'm a Mechanical Engineering student at the University of Colorado Boulder, with experience in Solidworkks parts and assemblies. I aim apply engineering principles to create efficient and elegant solutions to design challenges.
+      I'm a Mechanical Engineering student at the University of Colorado Boulder, with experience in Solidworks parts and assemblies. I aim to apply engineering principles to create efficient and elegant solutions to design challenges.
     </p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
-      <div class="card">
+
+      <div class="card" data-images="plane1.jpg,plane2.jpg,plane3.jpg,mplane4.jpg,plane5.jpg,plane6.jpg">
         <h3>Remote Controlled Aircraft</h3>
-        <div class="carousel">
-            <img src="images/truck1.jpg" class="active">
-            <img src="images/truck2.jpg">
-            <img src="images/truck3.jpg">
-            <img src="images/mount.jpg">
-            <img src="images/truckdraw.jpg">
-            <img src="images/hangar.jpg">
-          
-        <p>Remote controlled aircraft designed for maximized flight time using high wing aspect ratio, and optomized and efficient internal structures.</p>
+        <p>Remote controlled aircraft designed for maximized flight time using high aspect ratio wings and optimized internal structures.</p>
       </div>
 
-      <div class="card">
+      <div class="card" data-images="truck1.jpg,truck2.jpg,truck3.jpg,mount.jpg,truckdraw.jpg,hangar.jpg">
         <h3>Skateboard Truck</h3>
-        <div class="carousel">
-            <img src="images/truck1.jpg" class="active">
-            <img src="images/truck2.jpg">
-            <img src="images/truck3.jpg">
-            <img src="images/mount.jpg">
-            <img src="images/truckdraw.jpg">
-            <img src="images/hangar.jpg">
-        <p>Solidworks assembly modeled after a longboard truck</p>
+        <p>SolidWorks assembly modeled after a longboard truck.</p>
       </div>
 
-      <div class="card">
+      <div class="card" data-images="vise1.jpg,vise2.jpg,vise3.jpg">
         <h3>Fractal Vise</h3>
         <p>Functional aluminum vise with oscillating lobes able to hold oddly shaped objects.</p>
       </div>
+
     </div>
   </section>
 
@@ -174,5 +209,51 @@
   <footer>
     © 2025 Owen McClain — Engineering Portfolio
   </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close">×</span>
+      <span class="arrow left" id="left">❮</span>
+      <img id="modal-img" src="">
+      <span class="arrow right" id="right">❯</span>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeBtn = document.getElementById("close");
+    const leftArrow = document.getElementById("left");
+    const rightArrow = document.getElementById("right");
+
+    let images = [];
+    let index = 0;
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        images = card.dataset.images.split(",").map(img => "images/" + img.trim());
+        index = 0;
+        modalImg.src = images[index];
+        modal.style.display = "flex";
+      });
+    });
+
+    closeBtn.onclick = () => modal.style.display = "none";
+
+    leftArrow.onclick = () => {
+      index = (index - 1 + images.length) % images.length;
+      modalImg.src = images[index];
+    };
+
+    rightArrow.onclick = () => {
+      index = (index + 1) % images.length;
+      modalImg.src = images[index];
+    };
+
+    window.onclick = e => {
+      if (e.target === modal) modal.style.display = "none";
+    };
+  </script>
 </body>
 </html>
