@@ -182,21 +182,20 @@
     <h2>Projects</h2>
     <div class="projects">
 
-      <div class="card" data-images="plane1.jpg,plane2.jpg,plane3.jpg,mplane4.jpg,plane5.jpg,plane6.jpg">
-        <h3>Remote Controlled Aircraft</h3>
-        <p>Remote controlled aircraft designed for maximized flight time using high aspect ratio wings and optimized internal structures.</p>
-      </div>
+     <a href="aircraft.html" class="project-card">
+    <img src="images/plane1.jpg" alt="Aircraft Project">
+    <h3>Aircraft CAD Model</h3>
+</a>
 
-      <div class="card" data-images="truck1.jpg,truck2.jpg,truck3.jpg,mount.jpg,truckdraw.jpg,hangar.jpg">
-        <h3>Skateboard Truck</h3>
-        <p>SolidWorks assembly modeled after a longboard truck.</p>
-      </div>
+<a href="truck.html" class="project-card">
+    <img src="images/truck1.jpg" alt="Truck Project">
+    <h3>Skateboard Truck Assembly</h3>
+</a>
 
-      <div class="card" data-images="vise1.jpg,vise2.jpg,vise3.jpg">
-        <h3>Fractal Vise</h3>
-        <p>Functional aluminum vise with oscillating lobes able to hold oddly shaped objects.</p>
-      </div>
-
+<a href="vise.html" class="project-card">
+    <img src="images/vise1.jpg" alt="Vise Project">
+    <h3>Precision Machined Fractal Vise</h3>
+</a>
     </div>
   </section>
 
