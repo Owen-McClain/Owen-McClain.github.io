@@ -135,11 +135,26 @@
     <div class="projects">
       <div class="card">
         <h3>Remote Controlled Aircraft</h3>
-        <p>Short description of your engineering project: tools used, what you built, impact.</p>
+        <div class="carousel">
+            <img src="images/truck1.jpg" class="active">
+            <img src="images/truck2.jpg">
+            <img src="images/truck3.jpg">
+            <img src="images/mount.jpg">
+            <img src="images/truckdraw.jpg">
+            <img src="images/hangar.jpg">
+          
+        <p>Remote controlled aircraft designed for maximized flight time using high wing aspect ratio, and optomized and efficient internal structures.</p>
       </div>
 
       <div class="card">
         <h3>Skateboard Truck</h3>
+        <div class="carousel">
+            <img src="images/truck1.jpg" class="active">
+            <img src="images/truck2.jpg">
+            <img src="images/truck3.jpg">
+            <img src="images/mount.jpg">
+            <img src="images/truckdraw.jpg">
+            <img src="images/hangar.jpg">
         <p>Solidworks assembly modeled after a longboard truck</p>
       </div>
 
