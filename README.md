@@ -188,7 +188,7 @@
 </a>
 
 <a href="skateboard.html" class="project-card">
-    <img src="images/truck1.jpg" alt="Truck Project">
+    <img src="images/truck1.jpg" alt="Skateboard Truck Assembly">
     <h3>Skateboard Truck Assembly</h3>
 </a>
 
