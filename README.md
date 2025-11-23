@@ -187,7 +187,7 @@
     <h3>Aircraft CAD Model</h3>
 </a>
 
-<a href="truck.html" class="project-card">
+<a href="skateboard.html" class="project-card">
     <img src="images/truck1.jpg" alt="Truck Project">
     <h3>Skateboard Truck Assembly</h3>
 </a>
