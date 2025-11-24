@@ -24,31 +24,50 @@ a.back {
   text-decoration: none; 
   font-size: 1.1rem; 
 }
+
+/* CAROUSEL */
 .carousel { 
   max-width: 900px; 
   margin: 40px auto; 
   position: relative; 
-  height: 500px; /* fixed height for consistency */
+  height: 500px;
   overflow: hidden; 
-  border-radius: 12px; 
+  border-radius: 12px;
+  background: #000;
 }
-.carousel img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  opacity: 0; 
-  transition: opacity 0.6s ease; /* smooth fade */
-  
-    border-radius: inherit;  /* inherits 12px from parent */
-  background-color: #000;
+
+/* Slide wrapper handles the rounded corners */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.carousel img.active { 
-  opacity: 1; 
-  z-index: 1; 
+
+/* Only the active slide shows */
+.slide.active {
+  opacity: 1;
+  z-index: 1;
 }
+
+/* The image never touches edges and has rounded corners */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  background-color: transparent;
+}
+
+/* Buttons */
 .carousel button { 
   position: absolute; 
   top: 50%; 
@@ -63,6 +82,7 @@ a.back {
 }
 .prev { left: 10px; } 
 .next { right: 10px; }
+
 .content { 
   max-width: 900px; 
   margin: 40px auto; 
@@ -78,12 +98,14 @@ a.back {
   <a href="index.html" class="back">← Back to portfolio</a>
 </header>
 
+<!-- FIXED CAROUSEL STRUCTURE -->
 <div class="carousel">
-  <img src="images/plane1.jpg" class="active">
-  <img src="images/plane2.jpg">
-  <img src="images/plane3.jpg">
-  <img src="images/plane4.jpg">
-  <img src="images/plane5.jpg">
+  <div class="slide active"><img src="images/plane1.jpg"></div>
+  <div class="slide"><img src="images/plane2.jpg"></div>
+  <div class="slide"><img src="images/plane3.jpg"></div>
+  <div class="slide"><img src="images/plane4.jpg"></div>
+  <div class="slide"><img src="images/plane5.jpg"></div>
+
   <button class="prev">❮</button>
   <button class="next">❯</button>
 </div>
@@ -94,33 +116,34 @@ a.back {
 </div>
 
 <script>
-const imgs = document.querySelectorAll('.carousel img');
+const slides = document.querySelectorAll('.slide');
 let index = 0;
-let intervalTime = 2500; //
+let intervalTime = 2500;
 
 // Function to show a specific slide
 function showSlide(i) {
-  imgs[index].classList.remove('active');
+  slides[index].classList.remove('active');
   index = i;
-  imgs[index].classList.add('active');
+  slides[index].classList.add('active');
 }
 
 // Next/Prev buttons
-document.querySelector('.next').onclick = () => { showSlide((index + 1) % imgs.length); resetInterval(); };
-document.querySelector('.prev').onclick = () => { showSlide((index - 1 + imgs.length) % imgs.length); resetInterval(); };
+document.querySelector('.next').onclick = () => { showSlide((index + 1) % slides.length); resetInterval(); };
+document.querySelector('.prev').onclick = () => { showSlide((index - 1 + slides.length) % slides.length); resetInterval(); };
 
 // Automatic sliding
 let slideInterval = setInterval(() => {
-  showSlide((index + 1) % imgs.length);
+  showSlide((index + 1) % slides.length);
 }, intervalTime);
 
 // Reset interval after manual click
 function resetInterval() {
   clearInterval(slideInterval);
   slideInterval = setInterval(() => {
-    showSlide((index + 1) % imgs.length);
+    showSlide((index + 1) % slides.length);
   }, intervalTime);
 }
 </script>
+
 </body>
 </html>
