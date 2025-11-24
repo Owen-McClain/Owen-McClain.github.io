@@ -25,21 +25,18 @@ a.back {
   font-size: 1.1rem; 
 }
 
-/* ▼▼▼ YOUR SNIPPET IMPLEMENTED HERE ▼▼▼ */
 .carousel {
-  max-height: 500px;        /* from your snippet → fixed bounding box */
-  max-width: 900px;         /* consistent width limit */
-  overflow: hidden;         /* hides anything outside the frame */
+  max-height: 500px; 
+  max-width: 900px;
+  overflow: hidden;
   margin: 40px auto;
   position: relative;
   border-radius: 12px;
 }
 
-/* centers images horizontally like your snippet requires */
 .carousel img {
   margin: 0 auto;
 }
-/* ▲▲▲ END OF SNIPPET IMPLEMENTATION ▲▲▲ */
 
 .carousel img { 
   width: 100%; 
@@ -103,7 +100,7 @@ a.back {
 <script>
 const imgs = document.querySelectorAll('.carousel img');
 let index = 0;
-let intervalTime = 1000;
+let intervalTime = 2500;
 
 // Function to show a specific slide
 function showSlide(i) {
