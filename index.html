@@ -12,6 +12,10 @@
     --text: #e6e6e6;
     --text-light: #b3b3b3;
     --radius: 14px;
+    --navy: #000561;
+    --cream: #f2ecdd;
+    --cream-text: #1a1a1a;
+    --cream-text-light: #4a4a4a;
   }
 
   body {
@@ -45,25 +49,10 @@
     color: var(--accent);
   }
 
-  .hero {
-    padding: 120px 40px 100px;
-    max-width: 900px;
-  }
-
-  .hero h1 {
-    font-size: 3.4rem;
-    margin-bottom: 10px;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-    color: var(--text-light);
-    max-width: 600px;
-  }
-
   section {
     padding: 60px 40px;
     max-width: 1100px;
+    margin: 0 auto;
   }
 
   h2 {
@@ -71,6 +60,57 @@
     margin-bottom: 20px;
   }
 
+  /* ================= HERO ================= */
+  .hero-wrap {
+    position: relative;
+    height: 640px;
+    max-width: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  /* REPLACE the src below with your greyscale hero photograph */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+  }
+
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.55);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 700px;
+    padding: 0 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 3.4rem;
+    margin-bottom: 14px;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+  }
+
+  /* ================= PROJECTS ================= */
   .projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -84,10 +124,10 @@
     height: 160px;
     text-align: center;
     text-decoration: none;
-    background: var(--card);
-    color: var(--text);
+    background: var(--cream);
+    color: var(--cream-text);
     border-radius: var(--radius);
-    border: 5px solid #000561;
+    border: 3px solid var(--navy);
     transition: 0.25s;
     cursor: pointer;
   }
@@ -103,6 +143,114 @@
     padding: 0 10px;
   }
 
+  /* ================= ABOUT ME ================= */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .about-textbox {
+    background: var(--cream);
+    color: var(--cream-text);
+    border: 3px solid var(--navy);
+    border-radius: var(--radius);
+    padding: 40px;
+  }
+
+  .about-textbox h2 {
+    margin-top: 0;
+    color: var(--cream-text);
+  }
+
+  .about-textbox p {
+    color: var(--cream-text-light);
+  }
+
+  .about-textbox ul {
+    color: var(--cream-text);
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+
+  .about-textbox li {
+    margin-bottom: 10px;
+  }
+
+  .about-btn {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 12px 24px;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid var(--navy);
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  .about-btn:hover {
+    background: transparent;
+    color: var(--navy);
+  }
+
+  /* About Me image carousel */
+  .about-carousel {
+    position: relative;
+    min-height: 420px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+    border: 3px solid var(--navy);
+  }
+
+  .about-carousel .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-carousel .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .about-carousel .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 2;
+  }
+
+  .about-carousel .prev { left: 10px; }
+  .about-carousel .next { right: 10px; }
+
+  @media (max-width: 800px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ================= FOOTER / CONTACT ================= */
   footer {
     padding: 40px;
     text-align: center;
@@ -121,30 +269,27 @@
 <header>
   <div class="logo">Owen McClain - Engineering Portfolio</div>
   <nav>
-    <a href="#about">Home</a>
+    <a href="#hero">Home</a>
     <a href="#projects">Projects</a>
+    <a href="#about">About Me</a>
     <a href="#contact">Contact</a>
-    <a href="#skills">About Me</a>
   </nav>
 </header>
 
-<section class="hero" id="about">
-  <h1>Hi, I'm Owen McClain</h1>
-  <p>
-    Welcome to my project portfolio. I am currently studying mechanical engineering with a passion for innovation, sustainability through effective products, and creative, elegant design solutions that make life better for everyone.
-  </p>
+<!-- ================= HERO ================= -->
+<section class="hero-wrap" id="hero">
+  <!-- REPLACE-HERO-IMAGE: swap this src for your edited greyscale photograph -->
+  <img class="hero-bg" src="images/REPLACE-HERO-IMAGE.jpg" alt="">
+  <div class="hero-scrim"></div>
+  <div class="hero-text">
+    <h1>Hi, I'm Owen McClain</h1>
+    <p>
+      Welcome to my project portfolio. I am currently studying mechanical engineering with a passion for innovation, sustainability through effective products, and creative, elegant design solutions that make life better for everyone.
+    </p>
+  </div>
 </section>
 
-<section class="hero" id="about">
-  <h2>About Me</h2>
-  <div class="skills">
-
-      <a href="..........." class="project-card">
-        <h3>About Me</h3>
-      </a>
-</section>
-
-
+<!-- ================= PROJECTS ================= -->
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects">
@@ -164,6 +309,39 @@
   </div>
 </section>
 
+<!-- ================= ABOUT ME ================= -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-grid">
+
+    <div class="about-textbox">
+      <h2>Who I Am</h2>
+      <p>
+        [PLACEHOLDER TEXT — replace with a short paragraph about yourself: your background, what drives you as an engineer, and what you're currently focused on.]
+      </p>
+      <ul>
+        <li>[PLACEHOLDER SKILL — e.g. SolidWorks & CAD Modeling]</li>
+        <li>[PLACEHOLDER SKILL — e.g. Rapid Prototyping & 3D Printing]</li>
+        <li>[PLACEHOLDER SKILL — e.g. Structural & Aerodynamic Analysis]</li>
+        <li>[PLACEHOLDER SKILL — e.g. Team Leadership & Project Management]</li>
+      </ul>
+      <a href="skills.html" class="about-btn">More About Me &amp; My Skills</a>
+    </div>
+
+    <div class="about-carousel">
+      <!-- REPLACE-ABOUT-IMAGE-1 through 4: swap these srcs for your own photos -->
+      <div class="slide active"><img src="images/REPLACE-ABOUT-IMAGE-1.jpg" alt=""></div>
+      <div class="slide"><img src="images/REPLACE-ABOUT-IMAGE-2.jpg" alt=""></div>
+      <div class="slide"><img src="images/REPLACE-ABOUT-IMAGE-3.jpg" alt=""></div>
+      <div class="slide"><img src="images/REPLACE-ABOUT-IMAGE-4.jpg" alt=""></div>
+
+      <button class="prev">❮</button>
+      <button class="next">❯</button>
+    </div>
+
+  </div>
+</section>
+
 <section id="contact">
   <h2>Contact</h2>
   <p class="contact">Email: <a href="mailto:owen.mcclain04@gmail.com">owen.mcclain04@gmail.com</a></p>
@@ -175,6 +353,37 @@
   © 2025 Owen McClain — Engineering Portfolio
 </footer>
 
+<script>
+const aboutSlides = document.querySelectorAll('.about-carousel .slide');
+let aboutIndex = 0;
+const aboutIntervalTime = 3000;
+
+function showAboutSlide(i) {
+  aboutSlides[aboutIndex].classList.remove('active');
+  aboutIndex = i;
+  aboutSlides[aboutIndex].classList.add('active');
+}
+
+document.querySelector('.about-carousel .next').onclick = () => {
+  showAboutSlide((aboutIndex + 1) % aboutSlides.length);
+  resetAboutInterval();
+};
+document.querySelector('.about-carousel .prev').onclick = () => {
+  showAboutSlide((aboutIndex - 1 + aboutSlides.length) % aboutSlides.length);
+  resetAboutInterval();
+};
+
+let aboutSlideInterval = setInterval(() => {
+  showAboutSlide((aboutIndex + 1) % aboutSlides.length);
+}, aboutIntervalTime);
+
+function resetAboutInterval() {
+  clearInterval(aboutSlideInterval);
+  aboutSlideInterval = setInterval(() => {
+    showAboutSlide((aboutIndex + 1) % aboutSlides.length);
+  }, aboutIntervalTime);
+}
+</script>
+
 </body>
 </html>
-
