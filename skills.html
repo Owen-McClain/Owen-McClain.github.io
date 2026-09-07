@@ -60,14 +60,14 @@ a.back {
   margin: 0 auto;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+/* Stacked content wrapper — replaces the old two-column about-grid */
+.about-stack {
   max-width: 1000px;
-  margin: 40px auto;
+  margin: 40px auto 60px;
   padding: 0 20px;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .about-textbox {
@@ -97,17 +97,13 @@ a.back {
   margin-bottom: 10px;
 }
 
-  /* Images go here if replacing */
-
-/* Skills detail box below the grid */
+/* Skills detail box — same visual treatment, now stacked directly below */
 .skills-detail {
-  max-width: 1000px;
-  margin: 20px auto 60px;
-  padding: 40px;
   background: var(--cream);
   color: var(--cream-text);
   border: 5px solid var(--navy);
   border-radius: var(--radius);
+  padding: 40px;
 }
 
 .skills-detail h2 {
@@ -135,7 +131,7 @@ a.back {
 }
 
 @media (max-width: 800px) {
-  .about-grid, .skills-columns {
+  .skills-columns {
     grid-template-columns: 1fr;
   }
 }
@@ -151,7 +147,7 @@ a.back {
   <p>In the realm of engineering my passion lies in finding robust design solutions, engaging in hands on prototyping, and finding solutions that impact people daily. My core interests pertain to environmentally focused and sustainable engineering projects, like electric transportation, nuclear energy projects, and automation</p>
 </div>
 
-<div class="about-grid">
+<div class="about-stack">
 
   <div class="about-textbox">
     <h2>Education & Interests</h2>
@@ -165,72 +161,29 @@ a.back {
     </ul>
   </div>
 
-  <div class="about-carousel">
-    <!-- REPLACE-SKILLS-IMAGE-1 through 4: swap these srcs for your own photos -->
-    <div class="slide active"><img src="images/REPLACE-SKILLS-IMAGE-1.jpg" alt=""></div>
-    <div class="slide"><img src="images/REPLACE-SKILLS-IMAGE-2.jpg" alt=""></div>
-    <div class="slide"><img src="images/REPLACE-SKILLS-IMAGE-3.jpg" alt=""></div>
-    <div class="slide"><img src="images/REPLACE-SKILLS-IMAGE-4.jpg" alt=""></div>
-
-    <button class="prev">❮</button>
-    <button class="next">❯</button>
+  <div class="skills-detail">
+    <h2>Skills & Tools</h2>
+    <div class="skills-columns">
+      <div>
+        <h3>Design & CAD</h3>
+        <ul>
+          <li>Fusion 360 & Solidworks: Complex surface modeling, Manufacturer ready solid files and drawings, Function based modeling</li>
+          <li>GD&T Principles: Produced technical part drawings including material proccesses and treatments to be quoted by manufactuers</li>
+          <li>3D Printing & Fabrication: Modeled and printed assemblies for product prototyping as well as personal projects</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Analysis & Technical</h3>
+        <ul>
+          <li>Programming — MATLAB, Excel, HTML</li>
+          <li>Data Analysis — Performed root sum squared analysis on manufactured parts for an evolution of an exisitng product</li>
+          <li>Simulation Tools & Component Design — Modeled varients of existing products to conduct a deflection and stress analysis test reducing deflection under load and implementing the successful designs</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
 </div>
-
-<div class="skills-detail">
-  <h2>Skills & Tools</h2>
-  <div class="skills-columns">
-    <div>
-      <h3>Design & CAD</h3>
-      <ul>
-        <li>Fusion 360 & Solidworks: Complex surface modeling, Manufacturer ready solid files and drawings, Function based modeling</li>
-        <li>GD&T Principles: Produced technical part drawings including material proccesses and treatments to be quoted by manufactuers</li>
-        <li>3D Printing & Fabrication: Modeled and printed assemblies for product prototyping as well as personal projects</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Analysis & Technical</h3>
-      <ul>
-        <li>Programming — MATLAB, Excel, HTML</li>
-        <li>Data Analysis — Performed root sum squared analysis on manufactured parts for an evolution of an exisitng product</li>
-        <li>Simulation Tools & Component Design — Modeled varients of existing products to conduct a deflection and stress analysis test reducing deflection under load and implementing the successful designs</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<script>
-const skillsSlides = document.querySelectorAll('.about-carousel .slide');
-let skillsIndex = 0;
-const skillsIntervalTime = 3000;
-
-function showSkillsSlide(i) {
-  skillsSlides[skillsIndex].classList.remove('active');
-  skillsIndex = i;
-  skillsSlides[skillsIndex].classList.add('active');
-}
-
-document.querySelector('.about-carousel .next').onclick = () => {
-  showSkillsSlide((skillsIndex + 1) % skillsSlides.length);
-  resetSkillsInterval();
-};
-document.querySelector('.about-carousel .prev').onclick = () => {
-  showSkillsSlide((skillsIndex - 1 + skillsSlides.length) % skillsSlides.length);
-  resetSkillsInterval();
-};
-
-let skillsSlideInterval = setInterval(() => {
-  showSkillsSlide((skillsIndex + 1) % skillsSlides.length);
-}, skillsIntervalTime);
-
-function resetSkillsInterval() {
-  clearInterval(skillsSlideInterval);
-  skillsSlideInterval = setInterval(() => {
-    showSkillsSlide((skillsIndex + 1) % skillsSlides.length);
-  }, skillsIntervalTime);
-}
-</script>
 
 </body>
 </html>
